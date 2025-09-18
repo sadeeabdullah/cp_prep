@@ -6,18 +6,19 @@ int main()
     int n, q;
     cin >> n >> q;
 
-    int prefix[n];
+    int arr[n];
+
+    long long int prefix[n];
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
+        cin >> arr[i];
         if (i == 0)
         {
-            prefix[0] = x;
+            prefix[0] = arr[0];
         }
         else
         {
-            prefix[i] = x + prefix[i - 1];
+            prefix[i] = arr[i] + prefix[i - 1];
         }
     }
 
@@ -25,10 +26,7 @@ int main()
     {
         int l, r;
         cin >> l >> r;
-        if (l == 1)
-            cout << prefix[r - 1]  << endl;
-        else
-            cout << (prefix[r - 1] - prefix[l - 2]) << endl;
+        cout << (prefix[r - 1] - prefix[l - 1]) + arr[l - 1] << endl;
     }
     return 0;
 }
