@@ -26,7 +26,7 @@ int main ()
             if(op[i] <= i && !dp[i - op[j]])
             {
                 dp[i] = true;
-                break;// cmt cmt
+                break;// cmt cmt cmt
                 
             }
         }
