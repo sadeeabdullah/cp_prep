@@ -24,25 +24,43 @@ typedef pair<int,int> pi;
 #define all(var) (var).begin(), (var).end()
 const ll Mod = 1e9 + 7;
 
+vector<int> isPrimes(1e5 + 500, 0);
+vector<int> prime;
+void sieve(){
+	for(int i = 2; i <= 1e5 + 500; i++){
+		if(isPrimes[i]) continue;
+		for(int j = 2 * i; j <= 1e5 + 500; j += i){
+			isPrimes[j] = i;
+		}
+	}
+	for(int i= 2; i <= 1e5 + 500; i++) if(isPrimes[i] == 0)prime.push_back(i);
+}
 
 void Puzzle_Out()
 {
-    int a, b;	cin >> a >> b;
-    vector<int> ans;
+	int n;	cin >>n ;
 
-    if(a > b * b){
-    	cout << "IMPOSSIBLE" << nl;
-    	return;
-    }
-    
-    // // spliting block into b size
-    for(int i = 1; i <= a; i+= b){
-        int last = min(i + b - 1, a);
-        for(int j = last; j >= i; j--) ans.PB(j);
-    }
+	int need_prime = *(upper_bound(all(prime), n));
 
-    for(auto val : ans) cout << val << " ";
-    cout << nl;
+	
+		// cout << need_prime << nl;
+		vector<int> ans1(n + 1), ans2(n + 1);
+		int idx = n , curr = n;
+		while(idx > 0){
+			int need = need_prime - idx;
+			if(need <= curr){
+				ans1[idx] = idx;
+				ans2[idx] = need;
+				idx--;
+			}else{
+				curr = idx;
+				need_prime = *(upper_bound(all(prime), curr));
+			}
+		}
+
+		for(int i = 1; i <= n; i++) cout << ans1[i] << " "; cout << nl;
+		for(int i = 1; i <= n; i++) cout << ans2[i] << " "; cout << nl;
+	
 }
 
 
@@ -51,8 +69,9 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
+    sieve();
     int t = 1;
-    cin >> t;
+    // cin >> t;
     for (int tc = 1; tc <= t; tc++)
         Puzzle_Out();
 
