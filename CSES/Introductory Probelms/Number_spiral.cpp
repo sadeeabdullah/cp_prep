@@ -1,0 +1,60 @@
+		
+/* Bismillah hir rahmanir rahim */
+
+#include <bits/stdc++.h>
+
+//for pbds
+//#include <ext/pb_ds/assoc_container.hpp>
+//#include <ext/pb_ds/tree_policy.hpp>
+
+using namespace std;
+
+//typedef __gnu_pbds::tree<int, __gnu_pbds::null_type, less<int>, __gnu_pbds::rb_tree_tag, __gnu_pbds::tree_order_statistics_node_update> ordered_set;
+// 1. find_by_order(k) -> returns iterator to the kth smallest element (0 based)
+// 2. order_of_key(k)  -> returns the number of elements strictly less than k
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int,int> pi;
+#define F first
+#define S second
+#define PB push_back
+#define nl '\n'
+#define rall(var) (var).rbegin(), (var).rend()
+#define all(var) (var).begin(), (var).end()
+const ll Mod = 1e9 + 7;
+
+
+void Puzzle_Out()
+{
+    ll x, y;	cin >> x >> y;
+
+    if(y >= x){
+    	if(y % 2){
+    		cout << (y * y) - x + 1 << nl;
+    	}else{
+    		cout << ((y - 1) * (y - 1)) + x << nl;
+    	}
+    }else{
+    	if(x % 2 == 0){
+    		cout << (x * x) - y + 1 << nl;
+    	}else{
+    		cout << ((x - 1) * (x - 1)) + y << nl;
+    	}
+    }
+}
+
+
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int t = 1;
+    cin >> t;
+    for (int tc = 1; tc <= t; tc++)
+        Puzzle_Out();
+
+    return 0;
+}
+/* author : Sadee Abdullah */ 
